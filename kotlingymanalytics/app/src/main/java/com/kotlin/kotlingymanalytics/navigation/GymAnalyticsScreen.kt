@@ -1,0 +1,13 @@
+package com.kotlin.kotlingymanalytics.navigation
+
+sealed class GymAnalyticsScreen(val route: String) {
+
+    data object Login : GymAnalyticsScreen("login")
+
+    data object Home : GymAnalyticsScreen("home")
+
+    data object Register : GymAnalyticsScreen("register")
+
+    data object RecoverPassword : GymAnalyticsScreen("recover_password")
+
+}
