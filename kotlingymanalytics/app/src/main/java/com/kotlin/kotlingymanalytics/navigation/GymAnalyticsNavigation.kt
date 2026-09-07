@@ -10,6 +10,10 @@ import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsRecoverPassword
 import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsRegister
 
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.kotlin.kotlingymanalytics.data.session.SessionManager
+import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsAsignarEjercicios
+import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsCrearRutina
+import com.kotlin.kotlingymanalytics.ui.viewmodel.rutinaViewModel
 import com.kotlin.kotlingymanalytics.ui.viewmodel.usuarioViewModel
 
 @Composable
@@ -17,6 +21,7 @@ fun GymAnalyticsNavigation() {
 
     val navController = rememberNavController()
     val usuarioViewModel: usuarioViewModel = viewModel()
+    val rutinaViewModel: rutinaViewModel = viewModel()
 
     NavHost(
         navController = navController,
@@ -61,11 +66,21 @@ fun GymAnalyticsNavigation() {
         composable(GymAnalyticsScreen.Home.route) {
             GymAnalyticsGestion(
                 onLogout = {
+                    SessionManager.cerrarSesion()
                     navController.navigate(GymAnalyticsScreen.Login.route) {
                         popUpTo(GymAnalyticsScreen.Home.route) {
                             inclusive = true
                         }
                     }
+                },
+
+                toCreaRutina = {
+                    navController.navigate(GymAnalyticsScreen.CrearRutina.route)
+
+                },
+
+                onStart = {
+
                 }
             )
         }
@@ -79,5 +94,28 @@ fun GymAnalyticsNavigation() {
             )
         }
 
+        // CREAR RUTINA
+        composable(GymAnalyticsScreen.CrearRutina.route) {
+            GymAnalyticsCrearRutina(
+                viewModel = rutinaViewModel,
+
+                onContinuar = {
+                    navController.navigate(
+                        GymAnalyticsScreen.AsignarEjercicios.route
+                    )
+                }
+            )
+        }
+
+        // Asignar Ejercicios
+        composable(GymAnalyticsScreen.AsignarEjercicios.route) {
+            GymAnalyticsAsignarEjercicios(
+                viewModel = rutinaViewModel,
+
+                onAsignarEjercicios = {
+                    println("Hola")
+                }
+            )
+        }
     }
 }

@@ -47,8 +47,12 @@ import androidx.compose.ui.platform.LocalContext
 import com.kotlin.kotlingymanalytics.core.utils.SoundManager
 import com.kotlin.kotlingymanalytics.core.utils.vibrarError
 import com.kotlin.kotlingymanalytics.data.enums.AlertTipo
+import com.kotlin.kotlingymanalytics.data.enums.SexoTipo
+import com.kotlin.kotlingymanalytics.data.models.Usuario
+import com.kotlin.kotlingymanalytics.data.session.SessionManager
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsAlert
 import com.kotlin.kotlingymanalytics.ui.viewmodel.usuarioViewModel
+import java.time.LocalDate
 
 
 @Composable
@@ -58,6 +62,17 @@ fun GymAnalyticsLogin(
     onRecoverPassword: () -> Unit,
     viewModel: usuarioViewModel
 ) {
+
+    val usuario: Usuario = Usuario(
+            nombre = "alberto",
+            appat = "lizana",
+            apmat = "rojas",
+            fechaNacimiento = LocalDate.of(1994, 9, 15),
+            email = "alberto@gmail.com",
+            password = "123456789",
+            sexo = SexoTipo.MASCULINO
+        )
+
     var mostrarAlert by remember { mutableStateOf(false) }
     var tipoAlert by remember { mutableStateOf(AlertTipo.ERROR) }
     var mensajeAlert by remember { mutableStateOf("") }
@@ -194,17 +209,25 @@ fun GymAnalyticsLogin(
                         containerColor = AzulOscuro,
                         onClick = {
 
+                            viewModel.crearUsuarioPredeterminado(usuario)
+
                             val credencialesCorrectas = viewModel.validarLogin(
                                 email = email,
                                 password = password
                             )
 
+
                             if (credencialesCorrectas) {
+                                val usuario = viewModel.devolverUsuario(email)
+
+                                SessionManager.iniciarSesion(usuario)
+
                                 SoundManager.reproducirExito()
 
                                 tipoAlert = AlertTipo.EXITO
                                 mensajeAlert = "Credenciales correctas"
                                 mostrarAlert = true
+
                             } else {
                                 SoundManager.reproducirError()
                                 context.vibrarError()

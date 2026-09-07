@@ -18,30 +18,32 @@ import com.kotlin.kotlingymanalytics.ui.theme.BlancoCrema
 
 
 @Composable
-fun GymAnalyticsButton (
+fun GymAnalyticsButton(
     text: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     containerColor: Color,
-    showArrowIcon: Boolean = true
+    showArrowIcon: Boolean = true,
+    enabled: Boolean = true
 ) {
-    Button (
+    Button(
         onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
             .height(52.dp),
+        enabled = enabled,
         shape = RoundedCornerShape(size = 14.dp),
         colors = ButtonDefaults.buttonColors(
             containerColor = containerColor,
             contentColor = BlancoCrema
         )
     ) {
-        Text (
+        Text(
             text = text,
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold
         )
-        if(showArrowIcon){
+        if (showArrowIcon) {
             Spacer(modifier = Modifier.width(8.dp))
             ArrowIcon(
                 color = BlancoCrema,

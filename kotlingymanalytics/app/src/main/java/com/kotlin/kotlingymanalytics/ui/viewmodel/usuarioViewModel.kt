@@ -3,6 +3,7 @@ package com.kotlin.kotlingymanalytics.ui.viewmodel
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import com.kotlin.kotlingymanalytics.core.utils.validarFormulario
+import com.kotlin.kotlingymanalytics.data.enums.SexoTipo
 import com.kotlin.kotlingymanalytics.data.models.ErroresFormulario
 import com.kotlin.kotlingymanalytics.data.models.Usuario
 import java.time.LocalDate
@@ -19,6 +20,7 @@ class usuarioViewModel : ViewModel() {
         fechaNacimiento: LocalDate?,
         email: String,
         password: String,
+        sexo: SexoTipo
     ) {
         val usuario = Usuario(
             nombre = nombre.trim().lowercase(),
@@ -26,9 +28,15 @@ class usuarioViewModel : ViewModel() {
             apmat = apmat.trim().lowercase(),
             fechaNacimiento = fechaNacimiento!!,
             email = email.trim().lowercase(),
-            password = password
+            password = password,
+            sexo = sexo
         )
 
+        usuarios.add(usuario)
+    }
+
+
+    fun crearUsuarioPredeterminado(usuario: Usuario) {
         usuarios.add(usuario)
     }
 
@@ -70,4 +78,12 @@ class usuarioViewModel : ViewModel() {
         }
     }
 
+    fun devolverUsuario(
+        email: String
+    ): Usuario {
+        val usuario: Usuario = usuarios.find { u ->
+            u.email == email.trim().lowercase()
+        }!!
+        return usuario
+    }
 }

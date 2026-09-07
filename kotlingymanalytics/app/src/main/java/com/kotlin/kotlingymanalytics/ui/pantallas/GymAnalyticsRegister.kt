@@ -12,11 +12,14 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -38,10 +41,12 @@ import com.kotlin.kotlingymanalytics.core.utils.SoundManager
 import com.kotlin.kotlingymanalytics.core.utils.vibrarError
 import com.kotlin.kotlingymanalytics.data.enums.AlertTipo
 import com.kotlin.kotlingymanalytics.data.enums.EnumLogoType
+import com.kotlin.kotlingymanalytics.data.enums.SexoTipo
 import com.kotlin.kotlingymanalytics.ui.componentes.EmailIcon
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsAlert
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsButton
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsDatePicker
+import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsLabel
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsOutlinedInput
 import com.kotlin.kotlingymanalytics.ui.componentes.LockIcon
 import com.kotlin.kotlingymanalytics.ui.componentes.Logo
@@ -70,6 +75,7 @@ fun GymAnalyticsRegister(
     var apmat by remember { mutableStateOf("") }
     var fechaNacimiento: LocalDate? by remember { mutableStateOf(null) }
     var email by remember { mutableStateOf("") }
+    var sexo by remember { mutableStateOf<SexoTipo>(SexoTipo.MASCULINO) }
     var password by remember { mutableStateOf("") }
     var repeatPassword by remember { mutableStateOf("") }
 
@@ -199,6 +205,72 @@ fun GymAnalyticsRegister(
                         modifier = Modifier.height(12.dp)
                     )
 
+                    // SEXO
+                    GymAnalyticsLabel(
+                        text = "Sexo",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(start = 10.dp)
+                    )
+
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.Start,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.clickable {
+                                sexo = SexoTipo.MASCULINO
+                            }
+                        ) {
+                            RadioButton(
+                                selected = sexo == SexoTipo.MASCULINO,
+                                onClick = {
+                                    sexo = SexoTipo.MASCULINO
+                                },
+                                colors = RadioButtonDefaults.colors(
+                                    selectedColor = AzulOscuro,
+                                    unselectedColor = BlancoCrema
+                                )
+                            )
+
+                            Text(
+                                text = "Masculino",
+                                color = BlancoCrema
+                            )
+                        }
+
+                        Spacer(modifier = Modifier.width(16.dp))
+
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            modifier = Modifier.clickable {
+                                sexo = SexoTipo.FEMENINO
+                            }
+                        ) {
+                            RadioButton(
+                                selected = sexo == SexoTipo.FEMENINO,
+                                onClick = {
+                                    sexo = SexoTipo.FEMENINO
+                                },
+                                colors = RadioButtonDefaults.colors(
+                                    selectedColor = AzulOscuro,
+                                    unselectedColor = BlancoCrema
+                                )
+                            )
+
+                            Text(
+                                text = "Femenino",
+                                color = BlancoCrema
+                            )
+                        }
+                    }
+
+                    Spacer(
+                        modifier = Modifier.height(12.dp)
+                    )
 
                     // FECHA NACIMIENTO
                     GymAnalyticsDatePicker(
@@ -295,7 +367,8 @@ fun GymAnalyticsRegister(
                                     apmat,
                                     fechaNacimiento,
                                     email,
-                                    password
+                                    password,
+                                    sexo
                                 )
 
                                 SoundManager.reproducirExito()

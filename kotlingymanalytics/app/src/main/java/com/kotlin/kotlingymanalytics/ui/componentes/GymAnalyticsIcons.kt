@@ -5,6 +5,9 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.AddCircleOutline
 import androidx.compose.material.icons.filled.BarChart
+import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.Download
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Email
 import androidx.compose.material.icons.filled.FitnessCenter
 import androidx.compose.material.icons.filled.Home
@@ -14,11 +17,14 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Today
 
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.media3.exoplayer.offline.Download
+import com.kotlin.kotlingymanalytics.ui.theme.AzulClaro
 
 @Composable
 fun LockIcon (color: Color, modifier: Modifier, size: Dp = 24.dp){
@@ -104,12 +110,14 @@ fun StatsIcon(
 fun AddIcon(
     modifier: Modifier = Modifier,
     size: Dp = 24.dp,
-    contentDescription: String? = null
+    contentDescription: String? = null,
+    tint: Color = AzulClaro
 ) {
     Icon(
         imageVector = Icons.Default.Add,
         contentDescription = contentDescription,
-        modifier = modifier.size(size)
+        modifier = modifier.size(size),
+        tint = tint
     )
 }
 
@@ -130,15 +138,41 @@ fun PersonIcon(
 fun MancuernaIcon(
     modifier: Modifier = Modifier,
     size: Dp = 24.dp,
-    contentDescription: String? = null
+    contentDescription: String? = null,
+    tint: Color = AzulClaro
 ) {
     Icon(
         imageVector = Icons.Default.FitnessCenter,
         contentDescription = contentDescription,
-        modifier = modifier.size(size)
+        modifier = modifier.size(size),
+        tint = tint
     )
 }
 
+@Composable
+fun DownloadIcon(
+    modifier: Modifier = Modifier,
+    size: Dp = 24.dp,
+    contentDescription: String? = null,
+    tint: Color = AzulClaro
+) {
+    Icon(
+    imageVector = Icons.Default.Download,
+    contentDescription = null,
+        tint = tint
+    )
+}
 
-
-
+@Composable
+fun CalendarIcon(
+    modifier: Modifier = Modifier,
+    size: Dp = 24.dp,
+    contentDescription: String? = null,
+    tint: Color = AzulClaro
+){
+    Icon(
+        imageVector = Icons.Default.CalendarMonth,
+        contentDescription = null,
+        tint = tint
+    )
+}

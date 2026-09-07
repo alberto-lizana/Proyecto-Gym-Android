@@ -1,16 +1,20 @@
 package com.kotlin.kotlingymanalytics.data.models
+import com.kotlin.kotlingymanalytics.data.enums.SexoTipo
 import java.time.LocalDate
 import java.time.Period
 
 data class Usuario (
+
+    // val id: Long,
     val nombre: String,
     val appat: String,
     val apmat: String?,
     val fechaNacimiento: LocalDate,
     val email: String,
-    val password: String
-) {
+    val password: String,
+    val sexo: SexoTipo
 
+) {
     val edad: Int
         get() = calcularEdad()
 
