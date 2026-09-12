@@ -35,10 +35,10 @@ fun SelectorEsquemaReps(
             Text(
                 text = seleccionado?.let {
 
-                    if (it.repeticionesMax == null) {
-                        "${it.repeticionesMin} repeticiones"
+                    if (it.getRepeticionesMax() == null) {
+                        "${it.getRepeticionesMin()} repeticiones"
                     } else {
-                        "${it.repeticionesMin} - ${it.repeticionesMax} repeticiones"
+                        "${it.getRepeticionesMin()} - ${it.getRepeticionesMax()} repeticiones"
                     }
 
                 } ?: "Seleccionar repeticiones",
@@ -61,10 +61,10 @@ fun SelectorEsquemaReps(
                 ) {
 
                     Text(
-                        text = if (esquema.repeticionesMax == null) {
-                            "${esquema.repeticionesMin} repeticiones"
+                        text = if (esquema.getRepeticionesMax() == null) {
+                            "${esquema.getRepeticionesMin()} repeticiones"
                         } else {
-                            "${esquema.repeticionesMin} - ${esquema.repeticionesMax} repeticiones"
+                            "${esquema.getRepeticionesMin()} - ${esquema.getRepeticionesMax()} repeticiones"
                         },
                         color = BlancoCrema
                     )

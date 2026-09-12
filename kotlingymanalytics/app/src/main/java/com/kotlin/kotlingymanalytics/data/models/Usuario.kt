@@ -6,13 +6,13 @@ import java.time.Period
 data class Usuario (
 
     // val id: Long,
-    val nombre: String,
-    val appat: String,
-    val apmat: String?,
-    val fechaNacimiento: LocalDate,
-    val email: String,
-    val password: String,
-    val sexo: SexoTipo
+    private var nombre: String,
+    private var appat: String,
+    private var apmat: String?,
+    private var fechaNacimiento: LocalDate,
+    private var email: String,
+    private var password: String,
+    private var sexo: SexoTipo
 
 ) {
     val edad: Int
@@ -25,4 +25,61 @@ data class Usuario (
         ).years
     }
 
+    // GETTERS / SETTERS
+
+    fun getNombre(): String {
+        return nombre
+    }
+
+    fun setNombre(nombre: String) {
+        this.nombre = nombre
+    }
+
+    fun getAppat(): String {
+        return appat
+    }
+
+    fun setAppat(appat: String) {
+        this.appat = appat
+    }
+
+    fun getApmat(): String? {
+        return apmat
+    }
+
+    fun setApmat(apmat: String?) {
+        this.apmat = apmat
+    }
+
+    fun getFechaNacimiento(): LocalDate {
+        return fechaNacimiento
+    }
+
+    fun setFechaNacimiento(fechaNacimiento: LocalDate) {
+        this.fechaNacimiento = fechaNacimiento
+    }
+
+    fun getEmail(): String {
+        return email
+    }
+
+    fun setEmail(email: String) {
+        this.email = email
+    }
+
+    fun getPassword(): String {
+        return password
+    }
+
+    fun setPassword(password: String) {
+        this.password = password
+    }
+
+    fun getSexo(): SexoTipo {
+        return sexo
+    }
+
+    fun setSexo(sexo: SexoTipo) {
+        this.sexo = sexo
+    }
 }

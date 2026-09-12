@@ -32,6 +32,7 @@ import com.kotlin.kotlingymanalytics.ui.theme.RojoOscuro
 fun GymAnalyticsGestion(
     onLogout: () -> Unit,
     toCreaRutina: () -> Unit,
+    toCalcularRm: () -> Unit,
     onStart: () -> Unit
 ) {
     var selectedTab by remember { mutableStateOf(0) }
@@ -117,7 +118,7 @@ fun GymAnalyticsGestion(
                 )
         ) {
             when (selectedTab) {
-                0 -> GymAnalyticsHome(toCrearRutina = toCreaRutina, onStart = onStart)
+                0 -> GymAnalyticsHome(toCrearRutina = toCreaRutina, onStart = onStart, toCalcularRm = toCalcularRm)
                 1 -> GymAnalyticsStats()
                 2 -> GymAnalyticsPerfil(onLogout = onLogout)
             }

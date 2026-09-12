@@ -14,6 +14,7 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.KeyboardDoubleArrowRight
 import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material.icons.filled.Today
 
 import androidx.compose.material3.Icon
@@ -172,6 +173,20 @@ fun CalendarIcon(
 ){
     Icon(
         imageVector = Icons.Default.CalendarMonth,
+        contentDescription = null,
+        tint = tint
+    )
+}
+
+@Composable
+fun SpeedIcon(
+    modifier: Modifier = Modifier,
+    size: Dp = 24.dp,
+    contentDescription: String? = null,
+    tint: Color = AzulClaro
+){
+    Icon(
+        imageVector = Icons.Default.Speed,
         contentDescription = null,
         tint = tint
     )

@@ -6,9 +6,9 @@ import com.kotlin.kotlingymanalytics.data.models.EsquemaReps
 import com.kotlin.kotlingymanalytics.data.models.EsquemaSeries
 
 
-fun crearEjerciciosPredeterminados(): List<Ejercicio> {
+val ejerciciosBase: Array<Ejercicio> =
 
-    return listOf(
+    arrayOf(
 
         Ejercicio(
             id = 1,
@@ -103,11 +103,10 @@ fun crearEjerciciosPredeterminados(): List<Ejercicio> {
             grupoMuscularPrincipal = GrupoMuscular.CORE
         )
     )
-}
 
-fun crearEsquemaRepeticionesPredeterminados(): List<EsquemaReps> {
+val esquemaRepsBase: Array<EsquemaReps> =
 
-    return listOf(
+    arrayOf(
         EsquemaReps(
             0L,
             repeticionesMin = 1
@@ -174,7 +173,6 @@ fun crearEsquemaRepeticionesPredeterminados(): List<EsquemaReps> {
             repeticionesMax = 20
         )
     )
-}
 
 fun crearEsquemaDeSeriesPredeterminados(): List<EsquemaSeries> {
 

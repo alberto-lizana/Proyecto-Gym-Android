@@ -24,9 +24,9 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.kotlin.kotlingymanalytics.core.utils.crearEjerciciosPredeterminados
+import com.kotlin.kotlingymanalytics.core.utils.ejerciciosBase
 import com.kotlin.kotlingymanalytics.core.utils.crearEsquemaDeSeriesPredeterminados
-import com.kotlin.kotlingymanalytics.core.utils.crearEsquemaRepeticionesPredeterminados
+import com.kotlin.kotlingymanalytics.core.utils.esquemaRepsBase
 import com.kotlin.kotlingymanalytics.data.enums.DiaSemana
 import com.kotlin.kotlingymanalytics.data.models.Ejercicio
 import com.kotlin.kotlingymanalytics.data.models.EsquemaReps
@@ -53,8 +53,8 @@ fun GymAnalyticsAsignarEjercicios(
     val ejerciciosPorDia = viewModel.ejerciciosPorDia
 
     val esquemasSeries = remember { crearEsquemaDeSeriesPredeterminados() }
-    val esquemasReps = remember { crearEsquemaRepeticionesPredeterminados() }
-    val listaDeEjercicios: List<Ejercicio> = remember { crearEjerciciosPredeterminados() }
+    val esquemasReps = esquemaRepsBase.toList()
+    val listaEjercicios = ejerciciosBase.toList()
 
     // Estado local: solo importa mientras el diálogo está abierto
     var diaAgregandoEjercicio by remember { mutableStateOf<DiaSemana?>(null) }
@@ -110,7 +110,7 @@ fun GymAnalyticsAsignarEjercicios(
                         .orEmpty()
                         .forEach { ejercicioAsignado ->
                             GymAnalyticsTitulo(
-                                titulo = ejercicioAsignado.ejercicio.nombre,
+                                titulo = ejercicioAsignado.getEjercicio().getNombre(),
                                 style = MaterialTheme.typography.bodyMedium,
                                 fontWeight = FontWeight.Medium
                             )
@@ -158,12 +158,12 @@ fun GymAnalyticsAsignarEjercicios(
                 if (ejercicioSeleccionado == null) {
 
                     Column {
-                        listaDeEjercicios.forEach { ejercicio ->
+                        listaEjercicios.forEach { ejercicio ->
                             TextButton(
                                 onClick = { ejercicioSeleccionado = ejercicio },
                                 modifier = Modifier.fillMaxWidth()
                             ) {
-                                Text(text = ejercicio.nombre, color = BlancoCrema)
+                                Text(text = ejercicio.getNombre(), color = BlancoCrema)
                             }
                         }
                     }
@@ -173,7 +173,7 @@ fun GymAnalyticsAsignarEjercicios(
                     Column {
 
                         GymAnalyticsTitulo(
-                            titulo = ejercicioSeleccionado!!.nombre,
+                            titulo = ejercicioSeleccionado!!.getNombre(),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold
                         )

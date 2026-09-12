@@ -20,6 +20,7 @@ import com.kotlin.kotlingymanalytics.ui.componentes.CalendarIcon
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsAccionHome
 import com.kotlin.kotlingymanalytics.ui.componentes.MancuernaIcon
 import com.kotlin.kotlingymanalytics.ui.componentes.DownloadIcon
+import com.kotlin.kotlingymanalytics.ui.componentes.SpeedIcon
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsButton
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsCard
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsDato
@@ -31,7 +32,8 @@ import com.kotlin.kotlingymanalytics.ui.theme.RojoOscuro
 @Composable
 fun GymAnalyticsHome(
     toCrearRutina: () -> Unit,
-    onStart: () -> Unit
+    onStart: () -> Unit,
+    toCalcularRm: () -> Unit
 ) {
 
     Column(
@@ -148,6 +150,17 @@ fun GymAnalyticsHome(
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
+
+                GymAnalyticsAccionHome(
+                    titulo = "Calcular Rm",
+                    subtitulo = "Calcula tu repetición máxima estimada",
+                    icono = {
+                        SpeedIcon()
+                    },
+                    onClick = {
+                        toCalcularRm()
+                    }
+                )
 
                 GymAnalyticsAccionHome(
                     titulo = "Exportar datos",

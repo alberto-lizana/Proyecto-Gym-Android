@@ -12,6 +12,7 @@ import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsRegister
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kotlin.kotlingymanalytics.data.session.SessionManager
 import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsAsignarEjercicios
+import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsCalcularRm
 import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsCrearRutina
 import com.kotlin.kotlingymanalytics.ui.viewmodel.rutinaViewModel
 import com.kotlin.kotlingymanalytics.ui.viewmodel.usuarioViewModel
@@ -45,7 +46,7 @@ fun GymAnalyticsNavigation() {
                     navController.navigate(GymAnalyticsScreen.Register.route)
                 },
 
-                onRecoverPassword = {
+                toRecuperar = {
                     navController.navigate(GymAnalyticsScreen.RecoverPassword.route)
                 }
             )
@@ -81,15 +82,24 @@ fun GymAnalyticsNavigation() {
 
                 onStart = {
 
+                },
+
+                toCalcularRm = {
+                    navController.navigate(GymAnalyticsScreen.CalcularRm.route)
                 }
+
             )
         }
 
         // RECOVER PASSWORD
         composable(GymAnalyticsScreen.RecoverPassword.route) {
             GymAnalyticsRecoverPassword(
-                onRecovery = {
-                    println("hola recuperacion")
+                onRecuperar = { email ->
+                    usuarioViewModel.recuperarPassword(email)
+                },
+
+                onVolverLogin = {
+                    navController.popBackStack()
                 }
             )
         }
@@ -117,5 +127,11 @@ fun GymAnalyticsNavigation() {
                 }
             )
         }
+
+        // Calcular RM
+        composable(GymAnalyticsScreen.CalcularRm.route) {
+            GymAnalyticsCalcularRm()
+        }
+
     }
 }

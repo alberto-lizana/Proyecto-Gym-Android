@@ -14,4 +14,6 @@ sealed class GymAnalyticsScreen(val route: String) {
 
     data object AsignarEjercicios : GymAnalyticsScreen("asignar_ejercicios")
 
+    data object  CalcularRm : GymAnalyticsScreen("calcular_rm")
+
 }

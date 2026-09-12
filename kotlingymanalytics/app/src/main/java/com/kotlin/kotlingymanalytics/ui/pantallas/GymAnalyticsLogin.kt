@@ -59,7 +59,7 @@ import java.time.LocalDate
 fun GymAnalyticsLogin(
     onLogin: () -> Unit,
     onCreate: () -> Unit,
-    onRecoverPassword: () -> Unit,
+    toRecuperar: () -> Unit,
     viewModel: usuarioViewModel
 ) {
 
@@ -170,7 +170,7 @@ fun GymAnalyticsLogin(
                             modifier = Modifier
                                 .align(Alignment.CenterVertically)
                                 .clickable {
-                                    onRecoverPassword()
+                                    toRecuperar()
                                 }
                         )
                     }

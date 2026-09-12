@@ -1,6 +1,5 @@
 package com.kotlin.kotlingymanalytics.core.utils
 
-import androidx.compose.runtime.mutableStateListOf
 import com.kotlin.kotlingymanalytics.data.models.ErroresFormulario
 import com.kotlin.kotlingymanalytics.data.models.Usuario
 import java.time.LocalDate
@@ -201,6 +200,6 @@ fun emailYaExiste(
 ): Boolean {
 
     return usuarios.any { usuario ->
-        usuario.email == email.trim().lowercase()
+        usuario.getEmail() == email.trim().lowercase()
     }
 }
