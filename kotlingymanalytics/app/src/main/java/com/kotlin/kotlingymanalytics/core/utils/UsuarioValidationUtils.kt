@@ -1,5 +1,6 @@
 package com.kotlin.kotlingymanalytics.core.utils
 
+import com.kotlin.kotlingymanalytics.data.enums.SexoTipo
 import com.kotlin.kotlingymanalytics.data.models.ErroresFormulario
 import com.kotlin.kotlingymanalytics.data.models.Usuario
 import java.time.LocalDate
@@ -203,3 +204,57 @@ fun emailYaExiste(
         usuario.getEmail() == email.trim().lowercase()
     }
 }
+
+
+val crearUsuariosBase: Array<Usuario> = arrayOf(
+
+    Usuario(
+        nombre = "alberto",
+        appat = "lizana",
+        apmat = "rojas",
+        fechaNacimiento = LocalDate.of(1994, 9, 15),
+        email = "alberto@gmail.com",
+        password = "123456789",
+        sexo = SexoTipo.MASCULINO
+    ),
+
+    Usuario(
+        nombre = "camila",
+        appat = "gonzalez",
+        apmat = "perez",
+        fechaNacimiento = LocalDate.of(1997, 3, 22),
+        email = "camila@gmail.com",
+        password = "987654321",
+        sexo = SexoTipo.FEMENINO
+    ),
+
+    Usuario(
+        nombre = "diego",
+        appat = "muñoz",
+        apmat = "soto",
+        fechaNacimiento = LocalDate.of(1992, 7, 10),
+        email = "diego@gmail.com",
+        password = "123123123",
+        sexo = SexoTipo.MASCULINO
+    ),
+
+    Usuario(
+        nombre = "valentina",
+        appat = "rojas",
+        apmat = "castillo",
+        fechaNacimiento = LocalDate.of(2000, 11, 5),
+        email = "valentina@gmail.com",
+        password = "456456456",
+        sexo = SexoTipo.FEMENINO
+    ),
+
+    Usuario(
+        nombre = "sebastian",
+        appat = "torres",
+        apmat = "contreras",
+        fechaNacimiento = LocalDate.of(1995, 1, 28),
+        email = "sebastian@gmail.com",
+        password = "789789789",
+        sexo = SexoTipo.MASCULINO
+    )
+)

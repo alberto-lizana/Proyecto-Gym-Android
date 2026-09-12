@@ -2,6 +2,7 @@ package com.kotlin.kotlingymanalytics.ui.viewmodel
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
+import com.kotlin.kotlingymanalytics.core.utils.crearUsuariosBase
 import com.kotlin.kotlingymanalytics.core.utils.validarFormulario
 import com.kotlin.kotlingymanalytics.data.enums.SexoTipo
 import com.kotlin.kotlingymanalytics.data.models.ErroresFormulario
@@ -9,9 +10,13 @@ import com.kotlin.kotlingymanalytics.data.models.Usuario
 import java.time.LocalDate
 
 
-class usuarioViewModel : ViewModel() {
+class UsuarioViewModel : ViewModel() {
 
     val usuarios = mutableStateListOf<Usuario>()
+
+    init {
+        crearUsuarioPredeterminado(crearUsuariosBase.toList())
+    }
 
     fun crearUsuario(
         nombre: String,
@@ -35,9 +40,10 @@ class usuarioViewModel : ViewModel() {
         usuarios.add(usuario)
     }
 
-
-    fun crearUsuarioPredeterminado(usuario: Usuario) {
-        usuarios.add(usuario)
+    fun crearUsuarioPredeterminado(listaDeUsuarios: List<Usuario>) {
+        for (u in listaDeUsuarios) {
+            usuarios.add(u)
+        }
     }
 
     fun validarDatosFormulario(

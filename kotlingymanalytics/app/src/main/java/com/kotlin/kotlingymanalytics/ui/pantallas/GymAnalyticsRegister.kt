@@ -55,14 +55,14 @@ import com.kotlin.kotlingymanalytics.ui.theme.AzulClaro
 import com.kotlin.kotlingymanalytics.ui.theme.AzulOscuro
 import com.kotlin.kotlingymanalytics.ui.theme.BlancoCrema
 import com.kotlin.kotlingymanalytics.ui.theme.FondoOscuro
-import com.kotlin.kotlingymanalytics.ui.viewmodel.usuarioViewModel
+import com.kotlin.kotlingymanalytics.ui.viewmodel.UsuarioViewModel
 import java.time.LocalDate
 
 
 @Composable
 fun GymAnalyticsRegister(
     toLogin: () -> Unit,
-    viewModel: usuarioViewModel
+    viewModel: UsuarioViewModel
 ) {
     val context = LocalContext.current
 

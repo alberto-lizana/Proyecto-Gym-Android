@@ -47,12 +47,9 @@ import androidx.compose.ui.platform.LocalContext
 import com.kotlin.kotlingymanalytics.core.utils.SoundManager
 import com.kotlin.kotlingymanalytics.core.utils.vibrarError
 import com.kotlin.kotlingymanalytics.data.enums.AlertTipo
-import com.kotlin.kotlingymanalytics.data.enums.SexoTipo
-import com.kotlin.kotlingymanalytics.data.models.Usuario
 import com.kotlin.kotlingymanalytics.data.session.SessionManager
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsAlert
-import com.kotlin.kotlingymanalytics.ui.viewmodel.usuarioViewModel
-import java.time.LocalDate
+import com.kotlin.kotlingymanalytics.ui.viewmodel.UsuarioViewModel
 
 
 @Composable
@@ -60,19 +57,8 @@ fun GymAnalyticsLogin(
     onLogin: () -> Unit,
     onCreate: () -> Unit,
     toRecuperar: () -> Unit,
-    viewModel: usuarioViewModel
+    viewModel: UsuarioViewModel
 ) {
-
-    val usuario: Usuario = Usuario(
-            nombre = "alberto",
-            appat = "lizana",
-            apmat = "rojas",
-            fechaNacimiento = LocalDate.of(1994, 9, 15),
-            email = "alberto@gmail.com",
-            password = "123456789",
-            sexo = SexoTipo.MASCULINO
-        )
-
     var mostrarAlert by remember { mutableStateOf(false) }
     var tipoAlert by remember { mutableStateOf(AlertTipo.ERROR) }
     var mensajeAlert by remember { mutableStateOf("") }
@@ -208,8 +194,6 @@ fun GymAnalyticsLogin(
                         text = "INICIAR SESION",
                         containerColor = AzulOscuro,
                         onClick = {
-
-                            viewModel.crearUsuarioPredeterminado(usuario)
 
                             val credencialesCorrectas = viewModel.validarLogin(
                                 email = email,

@@ -11,7 +11,7 @@ import com.kotlin.kotlingymanalytics.data.models.EjercicioAsignado
 import com.kotlin.kotlingymanalytics.data.models.EsquemaReps
 import com.kotlin.kotlingymanalytics.data.models.EsquemaSeries
 
-class rutinaViewModel : ViewModel() {
+class RutinaViewModel : ViewModel() {
 
     var nombreRutina by mutableStateOf("")
         private set

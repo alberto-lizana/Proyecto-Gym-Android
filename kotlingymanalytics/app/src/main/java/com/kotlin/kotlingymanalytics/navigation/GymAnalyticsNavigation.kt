@@ -14,15 +14,15 @@ import com.kotlin.kotlingymanalytics.data.session.SessionManager
 import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsAsignarEjercicios
 import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsCalcularRm
 import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsCrearRutina
-import com.kotlin.kotlingymanalytics.ui.viewmodel.rutinaViewModel
-import com.kotlin.kotlingymanalytics.ui.viewmodel.usuarioViewModel
+import com.kotlin.kotlingymanalytics.ui.viewmodel.RutinaViewModel
+import com.kotlin.kotlingymanalytics.ui.viewmodel.UsuarioViewModel
 
 @Composable
 fun GymAnalyticsNavigation() {
 
     val navController = rememberNavController()
-    val usuarioViewModel: usuarioViewModel = viewModel()
-    val rutinaViewModel: rutinaViewModel = viewModel()
+    val usuarioViewModel: UsuarioViewModel = viewModel()
+    val rutinaViewModel: RutinaViewModel = viewModel()
 
     NavHost(
         navController = navController,

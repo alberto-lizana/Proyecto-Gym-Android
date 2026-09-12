@@ -41,12 +41,12 @@ import com.kotlin.kotlingymanalytics.ui.theme.AzulOscuro
 import com.kotlin.kotlingymanalytics.ui.theme.BlancoCrema
 import com.kotlin.kotlingymanalytics.ui.theme.FondoOscuro
 import com.kotlin.kotlingymanalytics.ui.theme.RojoOscuro
-import com.kotlin.kotlingymanalytics.ui.viewmodel.rutinaViewModel
+import com.kotlin.kotlingymanalytics.ui.viewmodel.RutinaViewModel
 
 @Composable
 fun GymAnalyticsAsignarEjercicios(
     onAsignarEjercicios: () -> Unit,
-    viewModel: rutinaViewModel
+    viewModel: RutinaViewModel
 ) {
     val nombreRutina: String = viewModel.nombreRutina
     val diasSeleccionados: Set<DiaSemana> = viewModel.diasSeleccionados
