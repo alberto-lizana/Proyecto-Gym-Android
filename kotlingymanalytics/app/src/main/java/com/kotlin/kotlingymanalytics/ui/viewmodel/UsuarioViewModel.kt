@@ -79,8 +79,8 @@ class UsuarioViewModel : ViewModel() {
     ): Boolean {
 
         return usuarios.any { usuario ->
-            usuario.getEmail() == email.trim().lowercase() &&
-                    usuario.getPassword() == password
+            usuario.email == email.trim().lowercase() &&
+                    usuario.password == password
         }
     }
 
@@ -88,7 +88,7 @@ class UsuarioViewModel : ViewModel() {
         email: String
     ): Usuario {
         val usuario: Usuario = usuarios.find { u ->
-            u.getEmail() == email.trim().lowercase()
+            u.email == email.trim().lowercase()
         }!!
         return usuario
     }
@@ -97,7 +97,7 @@ class UsuarioViewModel : ViewModel() {
         return try {
             val usuario = devolverUsuario(email)
 
-            usuario.getPassword()
+            usuario.password
         } catch (e: Exception) {
             "Usuario inválido"
         }

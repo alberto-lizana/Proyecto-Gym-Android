@@ -110,7 +110,7 @@ fun GymAnalyticsAsignarEjercicios(
                         .orEmpty()
                         .forEach { ejercicioAsignado ->
                             GymAnalyticsTitulo(
-                                titulo = ejercicioAsignado.getEjercicio().getNombre(),
+                                titulo = ejercicioAsignado.ejercicio.nombre,
                                 style = MaterialTheme.typography.bodyMedium,
                                 fontWeight = FontWeight.Medium
                             )
@@ -163,7 +163,7 @@ fun GymAnalyticsAsignarEjercicios(
                                 onClick = { ejercicioSeleccionado = ejercicio },
                                 modifier = Modifier.fillMaxWidth()
                             ) {
-                                Text(text = ejercicio.getNombre(), color = BlancoCrema)
+                                Text(text = ejercicio.nombre, color = BlancoCrema)
                             }
                         }
                     }
@@ -173,7 +173,7 @@ fun GymAnalyticsAsignarEjercicios(
                     Column {
 
                         GymAnalyticsTitulo(
-                            titulo = ejercicioSeleccionado!!.getNombre(),
+                            titulo = ejercicioSeleccionado!!.nombre,
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold
                         )

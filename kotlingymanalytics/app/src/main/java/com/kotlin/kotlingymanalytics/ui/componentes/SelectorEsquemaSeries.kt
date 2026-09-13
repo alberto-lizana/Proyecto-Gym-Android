@@ -34,7 +34,7 @@ fun SelectorEsquemaSeries(
 
             Text(
                 text = seleccionado?.let {
-                    "${it.getNumeroSeries()} series"
+                    "${it.numeroSeries} series"
                 } ?: "Seleccionar series",
                 color = BlancoCrema
             )
@@ -54,7 +54,7 @@ fun SelectorEsquemaSeries(
                 ) {
 
                     Text(
-                        text = "${esquema.getNumeroSeries()} series",
+                        text = "${esquema.numeroSeries} series",
                         color = BlancoCrema
                     )
                 }

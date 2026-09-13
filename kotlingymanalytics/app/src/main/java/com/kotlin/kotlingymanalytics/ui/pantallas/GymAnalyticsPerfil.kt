@@ -42,12 +42,12 @@ fun GymAnalyticsPerfil(
             ) {
                 GymAnalyticsDato(
                     nombre = "Nombre",
-                    valor = it.getNombre()
+                    valor = it.nombre
                 )
 
                 GymAnalyticsDato(
                     nombre = "Apellidos",
-                    valor = "${it.getAppat()} ${it.getApmat()}"
+                    valor = "${it.appat} ${it.apmat}"
                 )
 
                 GymAnalyticsDato(
@@ -57,7 +57,7 @@ fun GymAnalyticsPerfil(
 
                 GymAnalyticsDato(
                     nombre = "Sexo",
-                    valor = it.getSexo().name.lowercase()
+                    valor = it.sexo.name.lowercase()
                 )
             }
         }

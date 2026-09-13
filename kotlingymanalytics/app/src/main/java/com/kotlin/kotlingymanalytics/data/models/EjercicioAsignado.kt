@@ -1,24 +1,13 @@
 package com.kotlin.kotlingymanalytics.data.models
 
-data class EjercicioAsignado(
+class EjercicioAsignado(
+    ejercicio: Ejercicio,
+    configuracion: Configuracion
+) {
 
-    private var ejercicio: Ejercicio,
-    private var configuracion: Configuracion
+    var ejercicio = ejercicio
+        private set
 
-){
-    fun getEjercicio(): Ejercicio {
-        return ejercicio
-    }
-
-    fun setEjercicio(ejercicio: Ejercicio) {
-        this.ejercicio = ejercicio
-    }
-
-    fun getConfiguracion(): Configuracion {
-        return configuracion
-    }
-
-    fun setConfiguracion(configuracion: Configuracion) {
-        this.configuracion = configuracion
-    }
+    var configuracion = configuracion
+        private set
 }

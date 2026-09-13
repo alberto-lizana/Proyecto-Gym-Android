@@ -201,7 +201,7 @@ fun emailYaExiste(
 ): Boolean {
 
     return usuarios.any { usuario ->
-        usuario.getEmail() == email.trim().lowercase()
+        usuario.email == email.trim().lowercase()
     }
 }
 
