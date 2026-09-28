@@ -362,29 +362,34 @@ fun GymAnalyticsRegister(
 
                             if (errores.esValido) {
                                 viewModel.crearUsuario(
-                                    nombre,
-                                    appat,
-                                    apmat,
-                                    fechaNacimiento,
-                                    email,
-                                    password,
-                                    sexo
+                                    nombre = nombre,
+                                    appat = appat,
+                                    apmat = apmat,
+                                    fechaNacimiento = fechaNacimiento,
+                                    email = email,
+                                    password = password,
+                                    sexo = sexo,
+                                    onSuccess = {
+                                        SoundManager.reproducirExito()
+                                        tipoAlert = AlertTipo.EXITO
+                                        mensajeAlert = "Usuario creado correctamente"
+                                        mostrarAlert = true },
+                                    onError = {
+                                        SoundManager.reproducirError()
+                                        context.vibrarError()
+                                        tipoAlert = AlertTipo.ERROR
+                                        mensajeAlert = "No fue posible crear el usuario"
+                                        mostrarAlert = true
+                                    }
                                 )
-
-                                SoundManager.reproducirExito()
-
-                                tipoAlert = AlertTipo.EXITO
-                                mensajeAlert = "Usuario creado correctamente"
-                                mostrarAlert = true
-
                             } else {
+
                                 SoundManager.reproducirError()
                                 context.vibrarError()
 
                                 tipoAlert = AlertTipo.ERROR
                                 mensajeAlert = "No fue posible crear el usuario"
                                 mostrarAlert = true
-
                             }
                         }
                     )

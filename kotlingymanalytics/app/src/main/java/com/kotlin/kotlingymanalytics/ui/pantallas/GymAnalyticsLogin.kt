@@ -195,31 +195,53 @@ fun GymAnalyticsLogin(
                         containerColor = AzulOscuro,
                         onClick = {
 
-                            val credencialesCorrectas = viewModel.validarLogin(
+                            viewModel.login(
                                 email = email,
-                                password = password
+                                password = password,
+
+                                onSuccess = { response ->
+
+                                    viewModel.obtenerUsuario(
+                                        email = email,
+                                        token = response.token,
+
+                                        onSuccess = { usuarioResponse ->
+
+                                            viewModel.gestionSessionManager(
+                                                usuarioResponse = usuarioResponse,
+                                                token = response.token
+                                            )
+
+
+                                            SoundManager.reproducirExito()
+
+                                            tipoAlert = AlertTipo.EXITO
+                                            mensajeAlert = "Credenciales correctas"
+                                            mostrarAlert = true
+                                        },
+
+                                        onError = {
+
+                                            SoundManager.reproducirError()
+                                            context.vibrarError()
+
+                                            tipoAlert = AlertTipo.ERROR
+                                            mensajeAlert = "No se pudo obtener el usuario"
+                                            mostrarAlert = true
+                                        }
+                                    )
+                                },
+
+                                onError = {
+
+                                    SoundManager.reproducirError()
+                                    context.vibrarError()
+
+                                    tipoAlert = AlertTipo.ERROR
+                                    mensajeAlert = "Credenciales incorrectas"
+                                    mostrarAlert = true
+                                }
                             )
-
-
-                            if (credencialesCorrectas) {
-                                val usuario = viewModel.devolverUsuario(email)
-
-                                SessionManager.iniciarSesion(usuario)
-
-                                SoundManager.reproducirExito()
-
-                                tipoAlert = AlertTipo.EXITO
-                                mensajeAlert = "Credenciales correctas"
-                                mostrarAlert = true
-
-                            } else {
-                                SoundManager.reproducirError()
-                                context.vibrarError()
-
-                                tipoAlert = AlertTipo.ERROR
-                                mensajeAlert = "Credenciales incorrectas"
-                                mostrarAlert = true
-                            }
                         }
                     )
 

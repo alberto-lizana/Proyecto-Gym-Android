@@ -94,9 +94,26 @@ fun GymAnalyticsNavigation() {
         // RECOVER PASSWORD
         composable(GymAnalyticsScreen.RecoverPassword.route) {
             GymAnalyticsRecoverPassword(
-                onRecuperar = { email ->
-                    usuarioViewModel.recuperarPassword(email)
+                onRecuperar = { email, onSuccess, onError ->
+
+                    usuarioViewModel.recuperarPassword(
+                        email = email,
+                        onSuccess = onSuccess,
+                        onError = onError
+                    )
                 },
+
+                onRestablecer = { email, codigo, nuevaPassword, onSuccess, onError ->
+
+                    usuarioViewModel.restablecerPassword(
+                        email = email,
+                        codigo = codigo,
+                        nuevaPassword = nuevaPassword,
+                        onSuccess = onSuccess,
+                        onError = onError
+                    )
+                },
+
 
                 onVolverLogin = {
                     navController.popBackStack()
