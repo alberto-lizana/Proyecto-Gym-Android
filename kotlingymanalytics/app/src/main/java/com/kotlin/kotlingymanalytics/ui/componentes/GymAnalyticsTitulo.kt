@@ -17,8 +17,9 @@ fun GymAnalyticsTitulo(
     titulo: String,
     style: TextStyle = MaterialTheme.typography.headlineMedium,
     color: Color = BlancoCrema,
-    fontWeight: FontWeight = FontWeight.Bold
-) {
+    fontWeight: FontWeight = FontWeight.Bold,
+    modifier: Modifier = Modifier
+    ) {
     Text(
         text = titulo,
         style = style,

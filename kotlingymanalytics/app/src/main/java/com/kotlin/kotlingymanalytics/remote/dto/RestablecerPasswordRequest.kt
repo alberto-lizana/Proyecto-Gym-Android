@@ -1,4 +1,4 @@
-package com.kotlin.kotlingymanalytics.data.models
+package com.kotlin.kotlingymanalytics.remote.dto
 
 data class RestablecerPasswordRequest(
     val email: String,

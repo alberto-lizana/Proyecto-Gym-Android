@@ -31,7 +31,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.kotlin.kotlingymanalytics.data.enums.EnumLogoType
-import com.kotlin.kotlingymanalytics.data.models.CodigoRecuperarResponse
+import com.kotlin.kotlingymanalytics.remote.dto.CodigoRecuperarResponse
 import com.kotlin.kotlingymanalytics.ui.componentes.EmailIcon
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsButton
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsLabel

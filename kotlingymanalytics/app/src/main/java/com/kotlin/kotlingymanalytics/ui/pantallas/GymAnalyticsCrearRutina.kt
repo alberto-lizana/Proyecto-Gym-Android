@@ -33,6 +33,7 @@ import com.kotlin.kotlingymanalytics.ui.theme.FondoOscuro
 import com.kotlin.kotlingymanalytics.ui.theme.RojoOscuro
 import com.kotlin.kotlingymanalytics.ui.viewmodel.RutinaViewModel
 
+
 @Composable
 fun GymAnalyticsCrearRutina(
     onContinuar: () -> Unit,

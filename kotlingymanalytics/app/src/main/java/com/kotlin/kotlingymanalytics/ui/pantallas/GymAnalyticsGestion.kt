@@ -27,13 +27,17 @@ import com.kotlin.kotlingymanalytics.ui.theme.AzulOscuroContraste
 import com.kotlin.kotlingymanalytics.ui.theme.BlancoCrema
 import com.kotlin.kotlingymanalytics.ui.theme.FondoOscuro
 import com.kotlin.kotlingymanalytics.ui.theme.RojoOscuro
+import com.kotlin.kotlingymanalytics.ui.viewmodel.CicloViewModel
 
 @Composable
 fun GymAnalyticsGestion(
     onLogout: () -> Unit,
     toCreaRutina: () -> Unit,
+    toCrearCiclo: () -> Unit,
     toCalcularRm: () -> Unit,
-    onStart: () -> Unit
+    onStart: () -> Unit,
+    toMisCiclosRutinas: () -> Unit,
+    cicloViewModel: CicloViewModel
 ) {
     var selectedTab by remember { mutableIntStateOf(0) }
 
@@ -118,7 +122,14 @@ fun GymAnalyticsGestion(
                 )
         ) {
             when (selectedTab) {
-                0 -> GymAnalyticsHome(toCrearRutina = toCreaRutina, onStart = onStart, toCalcularRm = toCalcularRm)
+                0 -> GymAnalyticsHome(
+                    cicloViewModel = cicloViewModel,
+                    toCrearRutina = toCreaRutina,
+                    onStart = onStart,
+                    toCalcularRm = toCalcularRm,
+                    toCrearCiclo = toCrearCiclo,
+                    toMisCiclosRutinas = toMisCiclosRutinas
+                    )
                 1 -> GymAnalyticsStats()
                 2 -> GymAnalyticsPerfil(onLogout = onLogout)
             }

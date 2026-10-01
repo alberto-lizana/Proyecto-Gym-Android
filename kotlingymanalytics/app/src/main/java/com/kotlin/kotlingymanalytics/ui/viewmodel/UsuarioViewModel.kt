@@ -3,20 +3,19 @@ package com.kotlin.kotlingymanalytics.ui.viewmodel
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.kotlin.kotlingymanalytics.core.utils.crearUsuariosBase
 import com.kotlin.kotlingymanalytics.core.utils.validarFormulario
 import com.kotlin.kotlingymanalytics.data.enums.SexoTipo
-import com.kotlin.kotlingymanalytics.data.models.AuthResponse
-import com.kotlin.kotlingymanalytics.data.models.CodigoRecuperarResponse
+import com.kotlin.kotlingymanalytics.remote.dto.AuthResponse
+import com.kotlin.kotlingymanalytics.remote.dto.CodigoRecuperarResponse
 import com.kotlin.kotlingymanalytics.data.models.ErroresFormulario
-import com.kotlin.kotlingymanalytics.data.models.LoginRequest
-import com.kotlin.kotlingymanalytics.data.models.RecuperarPasswordRequest
-import com.kotlin.kotlingymanalytics.data.models.RestablecerPasswordRequest
+import com.kotlin.kotlingymanalytics.remote.dto.LoginRequest
+import com.kotlin.kotlingymanalytics.remote.dto.RecuperarPasswordRequest
+import com.kotlin.kotlingymanalytics.remote.dto.RestablecerPasswordRequest
 import com.kotlin.kotlingymanalytics.data.models.Usuario
-import com.kotlin.kotlingymanalytics.data.models.UsuarioRequest
-import com.kotlin.kotlingymanalytics.data.models.UsuarioResponse
+import com.kotlin.kotlingymanalytics.remote.dto.UsuarioRequest
+import com.kotlin.kotlingymanalytics.remote.dto.UsuarioResponse
 import com.kotlin.kotlingymanalytics.data.session.SessionManager
-import com.kotlin.kotlingymanalytics.remote.RetrofitInstance
+import com.kotlin.kotlingymanalytics.remote.api.RetrofitInstance
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 
@@ -26,9 +25,6 @@ class UsuarioViewModel : ViewModel() {
     val usuarios = mutableStateListOf<Usuario>()
     private val usuarioApi = RetrofitInstance.api
 
-    init {
-        crearUsuarioPredeterminado(crearUsuariosBase.toList())
-    }
 
     fun crearUsuario(
         nombre: String,
@@ -67,12 +63,6 @@ class UsuarioViewModel : ViewModel() {
         }
     }
 
-
-    fun crearUsuarioPredeterminado(listaDeUsuarios: List<Usuario>) {
-        for (u in listaDeUsuarios) {
-            usuarios.add(u)
-        }
-    }
 
     fun validarDatosFormulario(
         nombre: String,
@@ -156,6 +146,7 @@ class UsuarioViewModel : ViewModel() {
         token: String
     ) {
         val usuario = Usuario(
+            id = usuarioResponse.id,
             nombre = usuarioResponse.nombre,
             appat = usuarioResponse.appat,
             apmat = usuarioResponse.apmat,
@@ -171,15 +162,6 @@ class UsuarioViewModel : ViewModel() {
             usuario = usuario,
             token = token
         )
-    }
-
-    fun devolverUsuario(
-        email: String
-    ): Usuario {
-        val usuario: Usuario = usuarios.find { u ->
-            u.email == email.trim().lowercase()
-        }!!
-        return usuario
     }
 
     fun recuperarPassword(

@@ -1,12 +1,12 @@
-package com.kotlin.kotlingymanalytics.remote
+package com.kotlin.kotlingymanalytics.remote.api
 
-import com.kotlin.kotlingymanalytics.data.models.AuthResponse
-import com.kotlin.kotlingymanalytics.data.models.CodigoRecuperarResponse
-import com.kotlin.kotlingymanalytics.data.models.LoginRequest
-import com.kotlin.kotlingymanalytics.data.models.RecuperarPasswordRequest
-import com.kotlin.kotlingymanalytics.data.models.RestablecerPasswordRequest
-import com.kotlin.kotlingymanalytics.data.models.UsuarioRequest
-import com.kotlin.kotlingymanalytics.data.models.UsuarioResponse
+import com.kotlin.kotlingymanalytics.remote.dto.AuthResponse
+import com.kotlin.kotlingymanalytics.remote.dto.CodigoRecuperarResponse
+import com.kotlin.kotlingymanalytics.remote.dto.LoginRequest
+import com.kotlin.kotlingymanalytics.remote.dto.RecuperarPasswordRequest
+import com.kotlin.kotlingymanalytics.remote.dto.RestablecerPasswordRequest
+import com.kotlin.kotlingymanalytics.remote.dto.UsuarioRequest
+import com.kotlin.kotlingymanalytics.remote.dto.UsuarioResponse
 
 import retrofit2.http.Body
 import retrofit2.http.GET

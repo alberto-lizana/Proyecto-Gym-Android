@@ -10,14 +10,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.kotlin.kotlingymanalytics.data.models.EsquemaSeries
+import com.kotlin.kotlingymanalytics.room.entity.EsquemaSeriesEntity
 import com.kotlin.kotlingymanalytics.ui.theme.BlancoCrema
 
 @Composable
 fun SelectorEsquemaSeries(
-    esquemas: List<EsquemaSeries>,
-    seleccionado: EsquemaSeries?,
-    onSeleccionar: (EsquemaSeries) -> Unit
+    esquemas: List<EsquemaSeriesEntity>,
+    seleccionado: EsquemaSeriesEntity?,
+    onSeleccionar: (EsquemaSeriesEntity) -> Unit
 ) {
     var expandido by remember {
         mutableStateOf(false)

@@ -4,7 +4,7 @@ import java.time.LocalDate
 import java.time.Period
 
 class Usuario(
-    // id: Long,
+    id: Long,
     nombre: String,
     appat: String,
     apmat: String?,
@@ -13,6 +13,9 @@ class Usuario(
     password: String,
     sexo: SexoTipo
 ) {
+    var id = id
+        private set
+
     var nombre = nombre
         private set
 

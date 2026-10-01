@@ -13,7 +13,10 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.kotlin.kotlingymanalytics.data.session.SessionManager
 import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsAsignarEjercicios
 import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsCalcularRm
+import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsCrearCiclo
 import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsCrearRutina
+import com.kotlin.kotlingymanalytics.ui.pantallas.GymAnalyticsMisCiclosRutinas
+import com.kotlin.kotlingymanalytics.ui.viewmodel.CicloViewModel
 import com.kotlin.kotlingymanalytics.ui.viewmodel.RutinaViewModel
 import com.kotlin.kotlingymanalytics.ui.viewmodel.UsuarioViewModel
 
@@ -23,6 +26,7 @@ fun GymAnalyticsNavigation() {
     val navController = rememberNavController()
     val usuarioViewModel: UsuarioViewModel = viewModel()
     val rutinaViewModel: RutinaViewModel = viewModel()
+    val cicloViewModel: CicloViewModel = viewModel()
 
     NavHost(
         navController = navController,
@@ -63,7 +67,7 @@ fun GymAnalyticsNavigation() {
             )
         }
 
-        // HOME
+        // HOME/Gestion
         composable(GymAnalyticsScreen.Home.route) {
             GymAnalyticsGestion(
                 onLogout = {
@@ -75,6 +79,12 @@ fun GymAnalyticsNavigation() {
                     }
                 },
 
+                cicloViewModel = cicloViewModel,
+
+                toCrearCiclo = {
+                    navController.navigate(GymAnalyticsScreen.CrearCiclo.route)
+                },
+
                 toCreaRutina = {
                     navController.navigate(GymAnalyticsScreen.CrearRutina.route)
 
@@ -84,10 +94,13 @@ fun GymAnalyticsNavigation() {
 
                 },
 
+                toMisCiclosRutinas = {
+                    navController.navigate(GymAnalyticsScreen.MisCiclosRutinas.route)
+                },
+
                 toCalcularRm = {
                     navController.navigate(GymAnalyticsScreen.CalcularRm.route)
                 }
-
             )
         }
 
@@ -140,7 +153,8 @@ fun GymAnalyticsNavigation() {
                 viewModel = rutinaViewModel,
 
                 onAsignarEjercicios = {
-                    println("Hola")
+                    rutinaViewModel.limpiarBorrador()
+                    navController.popBackStack(GymAnalyticsScreen.Home.route, false)
                 }
             )
         }
@@ -150,5 +164,22 @@ fun GymAnalyticsNavigation() {
             GymAnalyticsCalcularRm()
         }
 
+        // Crar Ciclo
+        composable(GymAnalyticsScreen.CrearCiclo.route) {
+            GymAnalyticsCrearCiclo(
+                viewModel = cicloViewModel,
+
+                onCicloCreado = {
+                    cicloViewModel.limpiarBorrador()
+                    navController.popBackStack(GymAnalyticsScreen.Home.route, false)
+                }
+            )
+        }
+
+        composable(GymAnalyticsScreen.MisCiclosRutinas.route) {
+            GymAnalyticsMisCiclosRutinas(
+                cicloViewModel = cicloViewModel
+            )
+        }
     }
 }

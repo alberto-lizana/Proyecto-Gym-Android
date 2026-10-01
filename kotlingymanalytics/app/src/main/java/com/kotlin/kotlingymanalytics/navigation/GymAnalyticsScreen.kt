@@ -10,10 +10,15 @@ sealed class GymAnalyticsScreen(val route: String) {
 
     data object RecoverPassword : GymAnalyticsScreen("recover_password")
 
+    data object  CrearCiclo: GymAnalyticsScreen("crear_ciclo")
+
     data object CrearRutina : GymAnalyticsScreen("crear_rutina")
 
     data object AsignarEjercicios : GymAnalyticsScreen("asignar_ejercicios")
 
     data object  CalcularRm : GymAnalyticsScreen("calcular_rm")
+
+    object MisCiclosRutinas : GymAnalyticsScreen ("mis_ciclos_y_rutinas"
+    )
 
 }

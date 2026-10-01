@@ -15,22 +15,26 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
-import com.kotlin.kotlingymanalytics.core.utils.ejerciciosBase
-import com.kotlin.kotlingymanalytics.core.utils.crearEsquemaDeSeriesPredeterminados
-import com.kotlin.kotlingymanalytics.core.utils.esquemaRepsBase
+import com.kotlin.kotlingymanalytics.core.utils.SoundManager
+import com.kotlin.kotlingymanalytics.core.utils.nombreDia
+import com.kotlin.kotlingymanalytics.core.utils.vibrarError
+import com.kotlin.kotlingymanalytics.data.enums.AlertTipo
 import com.kotlin.kotlingymanalytics.data.enums.DiaSemana
-import com.kotlin.kotlingymanalytics.data.models.Ejercicio
-import com.kotlin.kotlingymanalytics.data.models.EsquemaReps
-import com.kotlin.kotlingymanalytics.data.models.EsquemaSeries
+import com.kotlin.kotlingymanalytics.room.entity.EjercicioEntity
+import com.kotlin.kotlingymanalytics.room.entity.EsquemaRepsEntity
+import com.kotlin.kotlingymanalytics.room.entity.EsquemaSeriesEntity
+import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsAlert
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsButton
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsCard
 import com.kotlin.kotlingymanalytics.ui.componentes.GymAnalyticsOutlinedInput
@@ -52,15 +56,23 @@ fun GymAnalyticsAsignarEjercicios(
     val diasSeleccionados: Set<DiaSemana> = viewModel.diasSeleccionados
     val ejerciciosPorDia = viewModel.ejerciciosPorDia
 
-    val esquemasSeries = remember { crearEsquemaDeSeriesPredeterminados() }
-    val esquemasReps = esquemaRepsBase.toList()
-    val listaEjercicios = ejerciciosBase.toList()
+    // Catálogo leído desde Room
+    val esquemasSeries by viewModel.esquemasSeries.collectAsState()
+    val esquemasReps by viewModel.esquemasReps.collectAsState()
+    val listaEjercicios by viewModel.ejerciciosDisponibles.collectAsState()
+
+    val context = LocalContext.current
+
+    // Estado de la alerta de guardado
+    var mostrarAlert by remember { mutableStateOf(false) }
+    var tipoAlert by remember { mutableStateOf(AlertTipo.ERROR) }
+    var mensajeAlert by remember { mutableStateOf("") }
 
     // Estado local: solo importa mientras el diálogo está abierto
     var diaAgregandoEjercicio by remember { mutableStateOf<DiaSemana?>(null) }
-    var ejercicioSeleccionado by remember { mutableStateOf<Ejercicio?>(null) }
-    var esquemaSeriesSeleccionado by remember { mutableStateOf<EsquemaSeries?>(null) }
-    var esquemaRepsSeleccionado by remember { mutableStateOf<EsquemaReps?>(null) }
+    var ejercicioSeleccionado by remember { mutableStateOf<EjercicioEntity?>(null) }
+    var esquemaSeriesSeleccionado by remember { mutableStateOf<EsquemaSeriesEntity?>(null) }
+    var esquemaRepsSeleccionado by remember { mutableStateOf<EsquemaRepsEntity?>(null) }
     var peso by remember { mutableStateOf("") }
     var descanso by remember { mutableStateOf("") }
 
@@ -135,8 +147,38 @@ fun GymAnalyticsAsignarEjercicios(
             GymAnalyticsButton(
                 text = "CONTINUAR",
                 containerColor = RojoOscuro,
-                onClick = { onAsignarEjercicios() },
+                onClick = {
+                    viewModel.guardarRutina(
+                        onSuccess = {
+                            SoundManager.reproducirExito()
+                            tipoAlert = AlertTipo.EXITO
+                            mensajeAlert = "Rutina guardada"
+                            mostrarAlert = true
+
+                        },
+                        onError = {
+                            SoundManager.reproducirError()
+                            context.vibrarError()
+                            tipoAlert = AlertTipo.ERROR
+                            mensajeAlert = "No se pudo guardar la rutina"
+                            mostrarAlert = true
+                        }
+                    )
+                },
                 modifier = Modifier.fillMaxWidth()
+            )
+        }
+
+        if (mostrarAlert) {
+            GymAnalyticsAlert(
+                tipo = tipoAlert,
+                mensaje = mensajeAlert,
+                onDismiss = {
+                    mostrarAlert = false
+                    if (tipoAlert == AlertTipo.EXITO) {
+                        onAsignarEjercicios()
+                    }
+                }
             )
         }
     }
@@ -271,17 +313,5 @@ fun GymAnalyticsAsignarEjercicios(
                 }
             }
         )
-    }
-}
-
-fun nombreDia(dia: DiaSemana): String {
-    return when (dia) {
-        DiaSemana.LUNES -> "LUNES"
-        DiaSemana.MARTES -> "MARTES"
-        DiaSemana.MIERCOLES -> "MIÉRCOLES"
-        DiaSemana.JUEVES -> "JUEVES"
-        DiaSemana.VIERNES -> "VIERNES"
-        DiaSemana.SABADO -> "SÁBADO"
-        DiaSemana.DOMINGO -> "DOMINGO"
     }
 }

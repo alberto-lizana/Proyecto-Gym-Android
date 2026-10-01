@@ -41,6 +41,11 @@ fun GymAnalyticsPerfil(
                 titulo = "Información Personal"
             ) {
                 GymAnalyticsDato(
+                    nombre = "id",
+                    valor = it.id.toString()
+                )
+
+                GymAnalyticsDato(
                     nombre = "Nombre",
                     valor = it.nombre
                 )

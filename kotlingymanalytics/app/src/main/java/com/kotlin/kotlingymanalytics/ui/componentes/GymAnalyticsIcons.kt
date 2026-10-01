@@ -16,6 +16,7 @@ import androidx.compose.material.icons.filled.Lock
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.filled.Speed
 import androidx.compose.material.icons.filled.Today
+import androidx.compose.material.icons.filled.ViewTimeline
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -188,6 +189,21 @@ fun SpeedIcon(
     Icon(
         imageVector = Icons.Default.Speed,
         contentDescription = null,
+        tint = tint
+    )
+}
+
+@Composable
+fun ViewTimeLineIcon(
+    modifier: Modifier = Modifier,
+    size: Dp = 24.dp,
+    contentDescription: String? = null,
+    tint: Color = AzulClaro
+) {
+    Icon(
+        imageVector = Icons.Default.ViewTimeline,
+        contentDescription = contentDescription,
+        modifier = modifier.size(size),
         tint = tint
     )
 }

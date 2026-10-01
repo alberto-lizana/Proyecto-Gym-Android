@@ -205,7 +205,7 @@ fun emailYaExiste(
     }
 }
 
-
+/*
 val crearUsuariosBase: Array<Usuario> = arrayOf(
 
     Usuario(
@@ -258,3 +258,4 @@ val crearUsuariosBase: Array<Usuario> = arrayOf(
         sexo = SexoTipo.MASCULINO
     )
 )
+ */

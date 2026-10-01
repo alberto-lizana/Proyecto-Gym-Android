@@ -1,6 +1,7 @@
 package com.kotlin.kotlingymanalytics.data.session
 
 import com.kotlin.kotlingymanalytics.data.models.Usuario
+import com.kotlin.kotlingymanalytics.remote.dto.UsuarioResponse
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

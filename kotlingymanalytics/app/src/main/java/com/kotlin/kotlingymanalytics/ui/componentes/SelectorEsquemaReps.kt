@@ -10,14 +10,14 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.kotlin.kotlingymanalytics.data.models.EsquemaReps
+import com.kotlin.kotlingymanalytics.room.entity.EsquemaRepsEntity
 import com.kotlin.kotlingymanalytics.ui.theme.BlancoCrema
 
 @Composable
 fun SelectorEsquemaReps(
-    esquemas: List<EsquemaReps>,
-    seleccionado: EsquemaReps?,
-    onSeleccionar: (EsquemaReps) -> Unit
+    esquemas: List<EsquemaRepsEntity>,
+    seleccionado: EsquemaRepsEntity?,
+    onSeleccionar: (EsquemaRepsEntity) -> Unit
 ) {
     var expandido by remember {
         mutableStateOf(false)
