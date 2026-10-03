@@ -2,6 +2,7 @@ package com.kotlin.kotlingymanalytics.ui.viewmodel
 
 import android.app.Application
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
@@ -83,7 +84,7 @@ class CicloViewModel(application: Application) : AndroidViewModel(application) {
     var fechaInicio by mutableStateOf(LocalDate.now())
         private set
 
-    var cantidadSemanas by mutableStateOf(4)
+    var cantidadSemanas by mutableIntStateOf(4)
         private set
 
     var repetible by mutableStateOf(false)
